@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/Ships/ship (12).png" type="Texture" id=1]
+[ext_resource path="res://objects/Player.gd" type="Script" id=2]
+[ext_resource path="res://objects/weapons/Cannon.tscn" type="PackedScene" id=3]
+[ext_resource path="res://objects/resources/Hurtbox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://objects/ammunition/CannonBall.tscn" type="PackedScene" id=5]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 23.0
+height = 62.0
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 0, 1 )
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 0, 30 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 30 )
+shape = SubResource( 1 )
+
+[node name="Hurtbox" parent="." instance=ExtResource( 4 )]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2( 0, 30 )
+shape = SubResource( 1 )
+
+[node name="CannonL" parent="." instance=ExtResource( 3 )]
+position = Vector2( 10, 49 )
+scale = Vector2( 0.5, 0.5 )
+Cannonball = ExtResource( 5 )
+
+[node name="HitBoxArea2D" parent="CannonL" index="3"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CannonR" parent="." instance=ExtResource( 3 )]
+position = Vector2( -10, 49 )
+rotation = 3.14159
+scale = Vector2( 0.5, 0.5 )
+Cannonball = ExtResource( 5 )
+
+[node name="HitBoxArea2D" parent="CannonR" index="3"]
+collision_layer = 0
+collision_mask = 8
+
+[editable path="CannonL"]
+[editable path="CannonR"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://objects/resources/Hurtbox.gd" type="Script" id=1]
+
+[node name="Hurtbox" type="Area2D"]
+modulate = Color( 0.803922, 0.0588235, 0.0588235, 0.490196 )
+self_modulate = Color( 0.803922, 0.0588235, 0.0588235, 0.490196 )
+script = ExtResource( 1 )
